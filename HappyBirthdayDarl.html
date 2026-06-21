@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Juwita Amelia Sari — Selamat Ulang Tahun ke-19</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💌</text></svg>"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Italianno&family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --plum-deep: #004cff;
+        --plum-mid: #241d369e;
+        --wine: #000000;
+        --gold: #d4af78;
+        --gold-light: #ecd9b6;
+        --cream: #fbf1e7;
+        --ink: #ffffff;
+        --nav-h: 84px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background: var(--plum-deep);
+      }
+      body {
+        color: var(--cream);
+        font-family: "Outfit", sans-serif;
+        font-weight: 300;
+        -webkit-font-smoothing: antialiased;
+      }
+      ::selection {
+        background: var(--gold);
+        color: var(--plum-deep);
+      }
+      :focus-visible {
+        outline: 2px solid var(--gold-light);
+        outline-offset: 3px;
+      }
+      h1,
+      h2 {
+        margin: 0;
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 500;
+      }
+      .script {
+        font-family: "Italianno", cursive;
+        font-weight: 400;
+        line-height: 1;
+      }
+      .eyebrow {
+        font-size: 0.7rem;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: var(--gold-light);
+        margin: 0 0 16px;
+      }
+
+      /* ---------- fixed ambient background ---------- */
+      .bg {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        background:
+          radial-gradient(
+            ellipse 70% 50% at 50% 12%,
+            rgba(212, 175, 120, 0.16),
+            transparent 60%
+          ),
+          linear-gradient(
+            165deg,
+            var(--plum-deep) 0%,
+            var(--plum-mid) 45%,
+            var(--wine) 100%
+          );
+      }
+      .petals {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .petal {
+        position: absolute;
+        top: -10%;
+        opacity: 0;
+        animation: fall linear infinite;
+        filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.15));
+      }
+      @keyframes fall {
+        0% {
+          transform: translate(0, 0) rotate(0deg);
+          opacity: 0;
+        }
+        8% {
+          opacity: 0.8;
+        }
+        92% {
+          opacity: 0.65;
+        }
+        100% {
+          transform: translate(var(--drift, 40px), 115vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      /* ---------- app shell ---------- */
+      .app {
+        position: relative;
+        z-index: 2;
+        height: 100vh;
+        height: 100dvh;
+        display: flex;
+        flex-direction: column;
+      }
+      .viewport {
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+      }
+      .track {
+        display: flex;
+        height: 100%;
+        transition: transform 0.85s cubic-bezier(0.65, 0, 0.35, 1);
+        will-change: transform;
+      }
+
+      .slide {
+        flex: 0 0 100vw;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 24px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(212, 175, 120, 0.4) transparent;
+      }
+      .slide::-webkit-scrollbar {
+        width: 5px;
+      }
+      .slide::-webkit-scrollbar-thumb {
+        background: rgba(212, 175, 120, 0.35);
+        border-radius: 4px;
+      }
+      .slide-inner {
+        max-width: 680px;
+        width: 100%;
+        text-align: center;
+        margin: auto;
+      }
+
+      /* entrance animation for whatever slide is current */
+      .slide .reveal-el {
+        opacity: 0;
+        transform: translateY(16px);
+        animation: rise 0.7s ease forwards;
+      }
+      @keyframes rise {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ---------- hero slide ---------- */
+      .seal {
+        width: 78px;
+        height: 78px;
+        margin: 0 auto 22px;
+        filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.35));
+        display: block;
+      }
+      .hero-name {
+        font-size: clamp(2rem, 7vw, 3.8rem);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.3em;
+        justify-content: center;
+        color: var(--cream);
+      }
+      .hero-name .word {
+        animation-delay: 0.15s;
+      }
+      .hero-sub {
+        margin-top: 14px;
+        font-size: clamp(2rem, 6vw, 3.2rem);
+        color: var(--gold-light);
+        animation-delay: 0.3s;
+      }
+      .hero-meta {
+        margin-top: 16px;
+        font-size: 0.95rem;
+        color: rgba(251, 241, 231, 0.6);
+        animation-delay: 0.45s;
+      }
+
+      /* ---------- letter slide ---------- */
+      .letter-card {
+        position: relative;
+        background: rgba(251, 241, 231, 0.07);
+        border: 1px solid rgba(212, 175, 120, 0.25);
+        backdrop-filter: blur(14px);
+        border-radius: 14px;
+        padding: 46px 36px 34px;
+        text-align: left;
+      }
+      .letter-card .seal {
+        position: absolute;
+        top: -38px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 58px;
+        height: 58px;
+        margin: 0;
+      }
+      .letter-kicker {
+        font-family: "Italianno", cursive;
+        font-size: 2rem;
+        color: var(--gold-light);
+        margin: 14px 0 18px;
+        text-align: center;
+      }
+      .letter-body p {
+        font-size: 0.98rem;
+        line-height: 1.75;
+        margin: 0 0 16px;
+        color: rgba(251, 241, 231, 0.88);
+      }
+      .letter-sign {
+        margin-top: 22px;
+        font-size: 1.4rem;
+        font-family: "Italianno", cursive;
+        color: var(--gold-light);
+        text-align: center;
+      }
+
+      /* ---------- video slide ---------- */
+      .video-frame {
+        position: relative;
+        display: inline-block;
+        padding: 14px;
+        border: 1px solid rgba(212, 175, 120, 0.4);
+        border-radius: 10px;
+        background: rgba(212, 175, 120, 0.04);
+      }
+      .video-frame span {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border: 1.5px solid var(--gold);
+        transform: rotate(45deg);
+      }
+      .video-frame .c-tl {
+        top: -5px;
+        left: -5px;
+      }
+      .video-frame .c-tr {
+        top: -5px;
+        right: -5px;
+      }
+      .video-frame .c-bl {
+        bottom: -5px;
+        left: -5px;
+      }
+      .video-frame .c-br {
+        bottom: -5px;
+        right: -5px;
+      }
+      video {
+        width: min(80vw, 520px);
+        max-height: 48vh;
+        display: block;
+        border-radius: 6px;
+        background: #1a0e1d;
+      }
+      .video-caption {
+        margin-top: 18px;
+        font-size: 0.92rem;
+        color: var(--gold-light);
+        font-style: italic;
+      }
+
+      /* ---------- wishes slide ---------- */
+      .wishes-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin-top: 8px;
+      }
+      .wish {
+        background: rgba(251, 241, 231, 0.06);
+        border: 1px solid rgba(212, 175, 120, 0.2);
+        border-radius: 12px;
+        padding: 20px 14px;
+      }
+      .wish-icon {
+        font-size: 1.5rem;
+        display: block;
+        margin-bottom: 10px;
+      }
+      .wish h3 {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 600;
+        font-size: 1.05rem;
+        color: var(--gold-light);
+        margin: 0 0 8px;
+      }
+      .wish p {
+        font-size: 0.82rem;
+        line-height: 1.55;
+        color: rgba(251, 241, 231, 0.72);
+        margin: 0;
+      }
+
+      /* ---------- closing slide ---------- */
+      .closing-script {
+        font-family: "Italianno", cursive;
+        font-size: 2.4rem;
+        color: var(--gold-light);
+        margin: 0 0 14px;
+      }
+      .closing-text {
+        font-size: 0.98rem;
+        color: rgba(251, 241, 231, 0.75);
+        margin: 0;
+      }
+
+      @media (max-width: 640px) {
+        .wishes-grid {
+          grid-template-columns: 1fr;
+        }
+        .letter-card {
+          padding: 42px 22px 26px;
+        }
+        video {
+          width: 88vw;
+        }
+      }
+
+      /* ---------- bottom nav ---------- */
+      .nav-bar {
+        flex: 0 0 auto;
+        height: var(--nav-h);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 22px;
+        padding: 0 20px;
+        background: rgba(20, 10, 24, 0.55);
+        backdrop-filter: blur(18px);
+        border-top: 1px solid rgba(212, 175, 120, 0.18);
+      }
+      .nav-arrow {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: 1px solid rgba(212, 175, 120, 0.4);
+        background: rgba(251, 241, 231, 0.04);
+        color: var(--gold-light);
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition:
+          background 0.25s ease,
+          transform 0.2s ease,
+          opacity 0.25s ease;
+      }
+      .nav-arrow:hover {
+        background: rgba(212, 175, 120, 0.16);
+        transform: translateY(-2px);
+      }
+      .nav-arrow.is-disabled {
+        opacity: 0.25;
+        pointer-events: none;
+      }
+
+      .dots {
+        display: flex;
+        gap: 9px;
+      }
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(251, 241, 231, 0.25);
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition:
+          background 0.3s ease,
+          transform 0.3s ease;
+      }
+      .dot.active {
+        background: var(--gold);
+        transform: scale(1.3);
+      }
+
+      .nav-next {
+        border: 1px solid var(--gold);
+        background: linear-gradient(
+          135deg,
+          rgba(212, 175, 120, 0.18),
+          rgba(212, 175, 120, 0.05)
+        );
+        color: var(--cream);
+        padding: 11px 22px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        letter-spacing: 0.03em;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition:
+          background 0.25s ease,
+          transform 0.2s ease,
+          box-shadow 0.25s ease;
+        white-space: nowrap;
+      }
+      .nav-next:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(212, 175, 120, 0.3),
+          rgba(212, 175, 120, 0.12)
+        );
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px -8px rgba(212, 175, 120, 0.5);
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .petals {
+          display: none;
+        }
+        * {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+      @media (max-width: 420px) {
+        .nav-bar {
+          gap: 14px;
+        }
+        .nav-next span.label {
+          display: inline;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg" aria-hidden="true"></div>
+    <div class="petals" id="petals" aria-hidden="true"></div>
+
+    <svg width="0" height="0" style="position: absolute">
+      <symbol id="seal-shape" viewBox="0 0 100 100">
+        <path
+          fill="url(#sealGrad)"
+          d="M50 2 L61 12 L76 8 L80 23 L95 28 L88 42 L98 54 L84 61 L86 77 L70 76 L62 90 L50 79 L38 90 L30 76 L14 77 L16 61 L2 54 L12 42 L5 28 L20 23 L24 8 L39 12 Z"
+        />
+        <circle
+          cx="50"
+          cy="50"
+          r="30"
+          fill="none"
+          stroke="#2a1b2e"
+          stroke-width="1.5"
+          opacity="0.35"
+        />
+        <text
+          x="50"
+          y="59"
+          text-anchor="middle"
+          font-family="Cormorant Garamond, serif"
+          font-style="italic"
+          font-weight="600"
+          font-size="34"
+          fill="#2a1b2e"
+        >
+          19
+        </text>
+        <defs>
+          <linearGradient id="sealGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#ecd9b6" />
+            <stop offset="1" stop-color="#b9905a" />
+          </linearGradient>
+        </defs>
+      </symbol>
+    </svg>
+
+    <div class="app">
+      <div class="viewport">
+        <div class="track" id="track">
+          <!-- SLIDE 1 — HERO -->
+          <section class="slide" data-next="Buka surat" aria-label="Sampul">
+            <div class="slide-inner">
+              <svg class="seal reveal-el" style="animation-delay: 0s">
+                <use href="#seal-shape" />
+              </svg>
+              <p class="eyebrow reveal-el" style="animation-delay: 0.1s">
+                19 tahun istimewa
+              </p>
+              <h1 class="hero-name">
+                <span class="word reveal-el" style="animation-delay: 0.2s"
+                  >Juwita</span
+                ><span class="word reveal-el" style="animation-delay: 0.32s"
+                  >Amelia</span
+                ><span class="word reveal-el" style="animation-delay: 0.44s"
+                  >Sari</span
+                >
+              </h1>
+              <p
+                class="hero-sub script reveal-el"
+                style="animation-delay: 0.56s"
+              >
+                Selamat Ulang Tahun, Sayang
+              </p>
+              <p class="hero-meta reveal-el" style="animation-delay: 0.68s">
+                Hari ini, dunia merayakan kamu. Klik tombol di bawah untuk
+                membaca lebih lanjut.
+              </p>
+            </div>
+          </section>
+
+          <!-- SLIDE 2 — LETTER -->
+          <section class="slide" data-next="Tonton video" aria-label="Surat">
+            <div class="slide-inner">
+              <div class="letter-card reveal-el">
+                <svg class="seal"><use href="#seal-shape" /></svg>
+                <p class="letter-kicker">Untuk Juwita Amelia Sari,</p>
+                <div class="letter-body">
+                  <p>
+                    Sembilan belas tahun lalu, dunia jadi sedikit lebih indah
+                    karena ada kamu di dalamnya. Hari ini, sayang, kamu resmi
+                    menambah satu lagi cerita di usia yang baru.
+                  </p>
+                  <p>
+                    Nama "Juwita" berarti perempuan yang elok dan baik hati —
+                    dan kamu menghidupi arti itu setiap hari, lewat cara kamu
+                    peduli dan tetap hangat meski hari-harimu tidak selalu
+                    mudah.
+                  </p>
+                  <p>
+                    Semoga di usia 19 ini kamu makin percaya pada dirimu, makin
+                    berani mengejar yang kamu impikan, dan tahu betul bahwa kamu
+                    sangat dicintai — hari ini, dan setiap hari sesudahnya.
+                  </p>
+                </div>
+                <p class="letter-sign">
+                  Dengan sayang yang tak pernah berkurang,
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- SLIDE 3 — VIDEO -->
+          <section
+            class="slide"
+            data-next="Lihat doa untukmu"
+            aria-label="Video"
+          >
+            <div class="slide-inner">
+              <p class="eyebrow reveal-el">satu video kecil, sepenuh hati</p>
+              <h2
+                class="reveal-el"
+                style="
+                  font-size: clamp(1.6rem, 5vw, 2.3rem);
+                  margin-bottom: 22px;
+                "
+              >
+                Untuk kamu, hari ini
+              </h2>
+              <div class="video-frame reveal-el">
+                <span class="c-tl"></span><span class="c-tr"></span
+                ><span class="c-bl"></span><span class="c-br"></span>
+                <video controls playsinline>
+                  <source src="Darl.mp4" type="video/mp4" />
+                  Video tidak dapat ditampilkan di browser ini.
+                </video>
+              </div>
+              <p class="video-caption reveal-el">
+                Tonton sampai habis ya, Sayang 🤍
+              </p>
+            </div>
+          </section>
+
+          <!-- SLIDE 4 — WISHES -->
+          <section class="slide" data-next="Selesai" aria-label="Doa">
+            <div class="slide-inner">
+              <p class="eyebrow reveal-el">tiga doa, bukan resolusi</p>
+              <h2
+                class="reveal-el"
+                style="
+                  font-size: clamp(1.6rem, 5vw, 2.3rem);
+                  margin-bottom: 8px;
+                "
+              >
+                Untuk usia 19-mu
+              </h2>
+              <p
+                class="reveal-el"
+                style="
+                  font-size: 0.9rem;
+                  color: rgba(251, 241, 231, 0.65);
+                  margin: 0 0 22px;
+                "
+              >
+                Hanya harapan kecil dari hati, untukmu yang sebesar ini
+                sekarang.
+              </p>
+              <div class="wishes-grid reveal-el">
+                <div class="wish">
+                  <span class="wish-icon">🌙</span>
+                  <h3>Tenang menjalani</h3>
+                  <p>
+                    Semoga kamu makin tenang menghadapi apa pun yang datang.
+                  </p>
+                </div>
+                <div class="wish">
+                  <span class="wish-icon">🌸</span>
+                  <h3>Terus bertumbuh</h3>
+                  <p>
+                    Semoga setiap usaha yang kamu rintis pelan-pelan menemukan
+                    jalannya.
+                  </p>
+                </div>
+                <div class="wish">
+                  <span class="wish-icon">✨</span>
+                  <h3>Selalu dicintai</h3>
+                  <p>
+                    Semoga kamu selalu ingat, ada yang menyayangimu sebesar ini.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SLIDE 5 — CLOSING -->
+          <section
+            class="slide"
+            data-next="Mulai dari awal"
+            data-restart="true"
+            aria-label="Penutup"
+          >
+            <div class="slide-inner">
+              <svg class="seal reveal-el"><use href="#seal-shape" /></svg>
+              <p class="closing-script reveal-el" style="animation-delay: 0.1s">
+                "Selamat ulang tahun ke-19,<br />Juwita Amelia Sari."
+              </p>
+              <p class="closing-text reveal-el" style="animation-delay: 0.2s">
+                Semoga harimu secerah senyummu.<br />Dibuat dengan sayang,
+                untukmu. 💌
+              </p>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <nav class="nav-bar" aria-label="Navigasi tampilan">
+        <button class="nav-arrow" id="prevBtn" aria-label="Sebelumnya">
+          ‹
+        </button>
+        <div
+          class="dots"
+          id="dots"
+          role="tablist"
+          aria-label="Pilih tampilan"
+        ></div>
+        <button class="nav-next" id="nextBtn">
+          <span class="label">Buka surat</span><span aria-hidden="true">→</span>
+        </button>
+      </nav>
+    </div>
+
+    <p class="sr-only" id="liveRegion" aria-live="polite"></p>
+
+    <script>
+      const track = document.getElementById("track");
+      const slides = Array.from(document.querySelectorAll(".slide"));
+      const dotsWrap = document.getElementById("dots");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const nextLabel = nextBtn.querySelector(".label");
+      const nextArrow = nextBtn.querySelector("span[aria-hidden]");
+      const liveRegion = document.getElementById("liveRegion");
+      let current = 0;
+
+      slides.forEach((_, i) => {
+        const dot = document.createElement("button");
+        dot.className = "dot";
+        dot.setAttribute("aria-label", "Tampilan " + (i + 1));
+        dot.addEventListener("click", () => goTo(i));
+        dotsWrap.appendChild(dot);
+      });
+      const dots = Array.from(dotsWrap.children);
+
+      function playEntrance(slide) {
+        const els = slide.querySelectorAll(".reveal-el");
+        els.forEach((el) => {
+          el.style.animation = "none";
+          requestAnimationFrame(() => {
+            el.style.animation = "";
+          });
+        });
+      }
+
+      function goTo(index) {
+        if (index < 0 || index >= slides.length) return;
+        current = index;
+        track.style.transform = `translateX(-${index * 100}vw)`;
+        dots.forEach((d, i) => d.classList.toggle("active", i === index));
+        prevBtn.classList.toggle("is-disabled", index === 0);
+
+        const slide = slides[index];
+        const isRestart = slide.dataset.restart === "true";
+        nextLabel.textContent = slide.dataset.next || "Lanjut";
+        nextArrow.textContent = isRestart ? "↺" : "→";
+
+        liveRegion.textContent = slide.getAttribute("aria-label") || "";
+        playEntrance(slide);
+      }
+
+      prevBtn.addEventListener("click", () => goTo(current - 1));
+      nextBtn.addEventListener("click", () => {
+        const isRestart = slides[current].dataset.restart === "true";
+        goTo(isRestart ? 0 : current + 1);
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.target.tagName === "VIDEO") return;
+        if (e.key === "ArrowRight") nextBtn.click();
+        if (e.key === "ArrowLeft") goTo(current - 1);
+      });
+
+      // touch swipe (ignore swipes starting on the video)
+      let touchStartX = null;
+      const viewportEl = document.querySelector(".viewport");
+      viewportEl.addEventListener(
+        "touchstart",
+        (e) => {
+          if (e.target.closest(".video-frame")) {
+            touchStartX = null;
+            return;
+          }
+          touchStartX = e.touches[0].clientX;
+        },
+        { passive: true },
+      );
+      viewportEl.addEventListener("touchend", (e) => {
+        if (touchStartX === null) return;
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 60) {
+          if (dx < 0) nextBtn.click();
+          else goTo(current - 1);
+        }
+        touchStartX = null;
+      });
+
+      goTo(0);
+
+      // ambient falling petals
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      if (!reduceMotion) {
+        const container = document.getElementById("petals");
+        const petalChars = ["🌸", "🌺", "✨"];
+        const count = window.innerWidth < 600 ? 8 : 14;
+        for (let i = 0; i < count; i++) {
+          const span = document.createElement("span");
+          span.className = "petal";
+          span.textContent =
+            petalChars[Math.floor(Math.random() * petalChars.length)];
+          const size = 13 + Math.random() * 13;
+          const left = Math.random() * 100;
+          const duration = 12 + Math.random() * 10;
+          const delay = Math.random() * 14;
+          const drift = (Math.random() - 0.5) * 160;
+          span.style.left = left + "vw";
+          span.style.fontSize = size + "px";
+          span.style.animationDuration = duration + "s";
+          span.style.animationDelay = delay + "s";
+          span.style.setProperty("--drift", drift + "px");
+          container.appendChild(span);
+        }
+      }
+    </script>
+  </body>
+</html>
